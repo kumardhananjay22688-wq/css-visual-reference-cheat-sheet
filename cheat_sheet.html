@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Addy's CSS Visual Cheat Sheet —  College Edition</title>
+  <link rel="stylesheet" href="cheat_sheet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ====================================================================
+       HERO HEADER & NAVIGATION
+       ==================================================================== -->
+  <header class="hero">
+    <div class="hero-top-badge">
+      <span class="badge-dot"></span>  Web Dev Track &bull; Personal Study Guide
+    </div>
+    <h1 class="hero-title">CSS Visual Reference &amp; Cheat Sheet</h1>
+    <p class="hero-desc">
+      A handcrafted, step-by-step visual notebook covering all <strong>29 core topics</strong> in order.
+      Every single topic features plain-English concepts, line-by-line CSS breakdowns, live browser previews, and beginner tips.
+    </p>
+
+    <!-- Quick Jump Topic Navigation -->
+    <nav class="nav-container" aria-label="Topic index">
+      <div class="nav-header-row">
+        <span class="nav-label">Quick Jump to Topic:</span>
+        <span class="nav-count">29 Topics Total</span>
+      </div>
+      <div class="nav-pill-grid">
+        <a href="#topic-1">01. Cascading</a>
+        <a href="#topic-2">02. Syntax</a>
+        <a href="#topic-3">03. Including Style</a>
+        <a href="#topic-4">04. Color Property</a>
+        <a href="#topic-5">05. Background Color</a>
+        <a href="#topic-6">06. Color Systems</a>
+        <a href="#topic-7">07. Selectors</a>
+        <a href="#topic-8">08. Text Props 1</a>
+        <a href="#topic-9">09. Units in CSS</a>
+        <a href="#topic-10">10. Text Props 2</a>
+        <a href="#topic-11">11. Box Model</a>
+        <a href="#topic-12">12. Display</a>
+        <a href="#topic-13">13. Visibility</a>
+        <a href="#topic-14">14. Alpha Channel</a>
+        <a href="#topic-15">15. Position</a>
+        <a href="#topic-16">16. z-index</a>
+        <a href="#topic-17">17. Background Image</a>
+        <a href="#topic-18">18. Background Size</a>
+        <a href="#topic-19">19. Flexbox Container</a>
+        <a href="#topic-20">20. Flex Direction</a>
+        <a href="#topic-21">21. Flex Properties</a>
+        <a href="#topic-22">22. Media Queries</a>
+        <a href="#topic-23">23. Transitions</a>
+        <a href="#topic-24">24. Transition Shorthand</a>
+        <a href="#topic-25">25. Transforms</a>
+        <a href="#topic-26">26. Keyframe Animations</a>
+        <a href="#topic-27">27. Animation Props</a>
+        <a href="#topic-28">28. Animation Shorthand</a>
+        <a href="#topic-29">29. % in Keyframes</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ====================================================================
+       MAIN SHOWCASE: 29 TOPIC CARDS
+       ==================================================================== -->
+  <main class="content-wrapper">
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 01: CASCADING STYLE SHEET
+         ------------------------------------------------------------------ -->
+    <article id="topic-1" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">01</span>
+        <h2 class="card-title">Cascading Style Sheet</h2>
+        <span class="card-category">Core Foundation</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p><strong>"Cascading"</strong> means styles flow downwards like water down steps. When multiple CSS rules target the exact same HTML element, the browser uses rules of priority (source order and specificity) to decide the winner. If two rules have identical weight, the <em>last written rule</em> wins.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>color: blue;</code> is read first by the browser engine.</li>
+              <li><code>color: #e11d48;</code> is read a line later, so it replaces the previous value.</li>
+              <li>Inline styles (on the HTML tag itself) override external stylesheets because they have higher specificity.</li>
+            </ul>
+          </div>
+          <div class="pro-tip">
+            <strong>💡 Pro Tip:</strong> If your CSS isn't applying, check if another rule lower down in your file is silently overriding it!
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="cascade-box">
+            <span>Cascaded Result: Rose Red overrides Blue!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>CSS Rule Order Demonstration</span></div>
+        <pre><code>/* Rule 1: declared first */
+.cascade-box {
+  background-color: #2563eb; /* Blue (overridden) */
+}
+
+/* Rule 2: declared lower in the stylesheet (WINS!) */
+.cascade-box {
+  background-color: #e11d48; /* Rose Red overrides blue */
+  color: #ffffff;
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 02: BASIC SYNTAX
+         ------------------------------------------------------------------ -->
+    <article id="topic-2" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">02</span>
+        <h2 class="card-title">Basic Syntax</h2>
+        <span class="card-category">Syntax</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Every CSS rule follows a 3-part blueprint: <strong>Selector</strong> (Who to style), <strong>Property</strong> (What to change), and <strong>Value</strong> (How to change it). Together, properties and values inside curly braces form a <em>declaration block</em>.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><strong>Selector:</strong> Matches elements on the page (e.g. <code>.syntax-card</code>).</li>
+              <li><strong>Declaration Block:</strong> Enclosed by <code>{</code> and <code>}</code>.</li>
+              <li><strong>Declaration:</strong> <code>property: value;</code> ended with a mandatory semicolon.</li>
+            </ul>
+          </div>
+          <div class="pro-tip">
+            <strong>⚠️ Watch Out:</strong> Forgetting the semicolon <code>;</code> at the end of a line is the #1 reason beginners break subsequent styles!
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="syntax-preview">
+            <span class="syntax-label">Selector &rarr; .syntax-preview</span>
+            <div class="syntax-inner">
+              Property: <strong>color</strong> &bull; Value: <strong>#0f172a</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Anatomy of a CSS Rule</span></div>
+        <pre><code>/* Selector { Property: Value; } */
+.syntax-preview {
+  color: #0f172a;               /* text color declaration */
+  background-color: #fef08a;    /* background color declaration */
+  border: 2px dashed #ca8a04;   /* border shorthand declaration */
+  padding: 14px;                /* internal spacing declaration */
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 03: INCLUDING STYLE
+         ------------------------------------------------------------------ -->
+    <article id="topic-3" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">03</span>
+        <h2 class="card-title">Including Style (3 Methods)</h2>
+        <span class="card-category">Setup</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>There are 3 ways to connect styling to an HTML document: <strong>Inline</strong> (directly inside an HTML tag attribute), <strong>Internal</strong> (inside <code>&lt;style&gt;</code> tags in the head), and <strong>External</strong> (linked via an external <code>.css</code> file).</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><strong>External (Recommended):</strong> One <code>style.css</code> file keeps HTML squeaky clean and can style 100+ pages at once.</li>
+              <li><strong>Internal:</strong> Good for single-page tests or email templates.</li>
+              <li><strong>Inline:</strong> Takes highest precedence but creates messy, duplicate HTML.</li>
+            </ul>
+          </div>
+          <div class="pro-tip">
+            <strong>💡 Best Practice:</strong> Always use External CSS for real projects. It enables browser caching, making your website load noticeably faster!
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="include-stack">
+            <!-- Inline demo element -->
+            <div style="background-color: #ffe4e6; color: #9f1239; border: 1px solid #fda4af; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-size: 13px;">
+              Inline Method: style="color: #9f1239;"
+            </div>
+            <!-- External styled element -->
+            <div class="include-external-sample">
+              External Method: styled cleanly in style.css
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>All 3 Inclusion Techniques</span></div>
+        <pre><code>&lt;!-- 1. External CSS (Industry Standard): Place inside &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;!-- 2. Internal CSS: Inside &lt;head&gt; of single document --&gt;
+&lt;style&gt;
+  h2 { color: #2563eb; }
+&lt;/style&gt;
+
+&lt;!-- 3. Inline CSS: Directly on element tag --&gt;
+&lt;p style="color: #9f1239; font-weight: 600;"&gt;Styled on tag&lt;/p&gt;</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 04: COLOR PROPERTY
+         ------------------------------------------------------------------ -->
+    <article id="topic-4" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">04</span>
+        <h2 class="card-title">Color Property (Text Color)</h2>
+        <span class="card-category">Colors</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>The <code>color</code> property defines the foreground color of text, list bullets, and text underline decorations. All child elements nested inside inherit this color automatically unless overridden.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>color: #0284c7;</code> sets text to vibrant ocean blue.</li>
+              <li>Nested elements like <code>&lt;span&gt;</code> or <code>&lt;strong&gt;</code> inherit the parent's color by default.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="text-color-demo-card">
+            <p class="tc-blue">Ocean Blue Heading (#0284c7)</p>
+            <p class="tc-red">Crimson Red Subtitle (#dc2626)</p>
+            <p class="tc-emerald">Emerald Green Status Note (#059669)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Color Property Syntax</span></div>
+        <pre><code>.tc-blue    { color: #0284c7; font-weight: 700; }
+.tc-red     { color: #dc2626; font-weight: 600; }
+.tc-emerald { color: #059669; font-weight: 500; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 05: BACKGROUND COLOR PROPERTY
+         ------------------------------------------------------------------ -->
+    <article id="topic-5" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">05</span>
+        <h2 class="card-title">Background Color Property</h2>
+        <span class="card-category">Colors</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>The <code>background-color</code> property paints the canvas area behind an element's text and padding, all the way to its outer border edge. By default, every element starts with <code>transparent</code>.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li>Fills the element's content box AND padding box.</li>
+              <li>Does NOT paint the margin area (margins remain see-through).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="bg-card-row">
+            <div class="bg-chip bg-chip-coral">Coral Red (#ff6b6b)</div>
+            <div class="bg-chip bg-chip-sky">Sky Blue (#38bdf8)</div>
+            <div class="bg-chip bg-chip-violet">Indigo Violet (#6366f1)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Background Color Rules</span></div>
+        <pre><code>.bg-chip-coral  { background-color: #ff6b6b; color: #ffffff; }
+.bg-chip-sky    { background-color: #38bdf8; color: #0f172a; }
+.bg-chip-violet { background-color: #6366f1; color: #ffffff; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 06: COLOR SYSTEMS
+         ------------------------------------------------------------------ -->
+    <article id="topic-6" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">06</span>
+        <h2 class="card-title">Color Systems (Named, RGB, Hex)</h2>
+        <span class="card-category">Colors</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Computers represent colors through different formats: everyday English <strong>Named Colors</strong> (like <code>tomato</code>), channel-based <strong>RGB</strong> numbers (0 to 255 for Red, Green, Blue), and 6-character <strong>Hexadecimal</strong> codes (#RRGGBB).</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><strong>Named:</strong> <code>tomato</code>, <code>gold</code>, <code>dodgerblue</code> (140+ built-in names).</li>
+              <li><strong>RGB:</strong> <code>rgb(239, 68, 68)</code> gives direct control over primary light mixing.</li>
+              <li><strong>Hex:</strong> <code>#ef4444</code> uses base-16 math (0-9, a-f) and is the most common format in modern UI design.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="color-sys-chips">
+            <div class="cs-badge cs-named">Named: tomato</div>
+            <div class="cs-badge cs-rgb">rgb(14, 165, 233)</div>
+            <div class="cs-badge cs-hex">Hex: #8b5cf6</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>3 Ways to Express Colors</span></div>
+        <pre><code>/* 1. Named Keyword */
+.cs-named { background-color: tomato; }
+
+/* 2. RGB (Red: 14, Green: 165, Blue: 233) */
+.cs-rgb   { background-color: rgb(14, 165, 233); }
+
+/* 3. Hexadecimal code (#8b5cf6) */
+.cs-hex   { background-color: #8b5cf6; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 07: SELECTORS
+         ------------------------------------------------------------------ -->
+    <article id="topic-7" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">07</span>
+        <h2 class="card-title">Selectors (Universal, Element, Class, ID, Grouping, Descendant)</h2>
+        <span class="card-category">Selectors</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Selectors are targeting expressions that tell CSS which HTML tags to grab and style. You can target all elements, single tag types, reusable classes, unique IDs, multiple tags grouped together, or nested children.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>*</code> : Universal (applies to every tag).</li>
+              <li><code>div</code> : Element tag selector.</li>
+              <li><code>.pill</code> : Class selector (starts with dot; reusable).</li>
+              <li><code>#avatar</code> : ID selector (starts with hash; unique per page).</li>
+              <li><code>h1, h2, h3</code> : Grouping (comma separates targets).</li>
+              <li><code>.parent span</code> : Descendant (target <code>span</code> inside <code>.parent</code>).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="selector-display-grid">
+            <div class="sel-tag">Tag (div)</div>
+            <div class="sel-class">Class (.sel-class)</div>
+            <div id="sel-unique">ID (#sel-unique)</div>
+            <div class="sel-ancestor">
+              <span>Descendant (.sel-ancestor span)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>CSS Selector Types</span></div>
+        <pre><code>*                { box-sizing: border-box; } /* 1. Universal */
+div              { line-height: 1.5; }       /* 2. Element */
+.sel-class       { background: #0284c7; }    /* 3. Class (.) */
+#sel-unique      { background: #dc2626; }    /* 4. ID (#) */
+h1, h2, h3       { margin: 0; }              /* 5. Grouping (,) */
+.sel-ancestor span { color: #f59e0b; }       /* 6. Descendant (space) */</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 08: TEXT PROPERTIES - PART 1
+         ------------------------------------------------------------------ -->
+    <article id="topic-8" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">08</span>
+        <h2 class="card-title">Text Properties - Part 1</h2>
+        <span class="card-category">Typography</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Controls primary text layout and styling: horizontal alignment (<code>text-align</code>), decorative underline/strike lines (<code>text-decoration</code>), thickness (<code>font-weight</code>), and the typeface family (<code>font-family</code>).</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>text-align: center;</code> centers inline content horizontally.</li>
+              <li><code>text-decoration: underline wavy #ef4444;</code> adds modern wavy underline.</li>
+              <li><code>font-weight: 800;</code> renders ultra-bold text (scale is 100 to 900).</li>
+              <li><code>font-family: 'JetBrains Mono', monospace;</code> specifies fallback typefaces.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="text-props-demo-box">
+            <p class="tp-centered">text-align: center</p>
+            <p class="tp-decor">text-decoration: underline wavy #ef4444</p>
+            <p class="tp-bold">font-weight: 800 (Heavyweight Text)</p>
+            <p class="tp-mono">font-family: 'JetBrains Mono', monospace</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Text Properties Syntax</span></div>
+        <pre><code>.tp-centered { text-align: center; }
+.tp-decor    { text-decoration: underline wavy #ef4444; }
+.tp-bold     { font-weight: 800; color: #b91c1c; }
+.tp-mono     { font-family: 'JetBrains Mono', Courier, monospace; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 09: UNITS IN CSS
+         ------------------------------------------------------------------ -->
+    <article id="topic-9" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">09</span>
+        <h2 class="card-title">Units in CSS (Absolute vs Relative)</h2>
+        <span class="card-category">Sizing</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Units tell the browser how large to render elements. <strong>Absolute units</strong> (like <code>px</code>) are locked and never change. <strong>Relative units</strong> (<code>%</code>, <code>em</code>, <code>rem</code>, <code>vw</code>, <code>vh</code>) resize adaptively depending on parent sizes, root font-size, or screen dimensions.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>150px</code> : Fixed absolute screen pixels.</li>
+              <li><code>80%</code> : 80% of whatever container width the parent provides.</li>
+              <li><code>1.5rem</code> : 1.5 &times; the root <code>&lt;html&gt;</code> font size (usually 16px &times; 1.5 = 24px).</li>
+              <li><code>30vw</code> : 30% of the active browser window width.</li>
+            </ul>
+          </div>
+          <div class="pro-tip">
+            <strong>💡 Modern Rule:</strong> Use <code>rem</code> for font sizes and spacing so users who scale text in their OS/browser settings get accessible, comfortable reading!
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Comparative Width Bars)</span>
+          <div class="unit-bars-container">
+            <div class="ubar ubar-px">px &bull; Fixed 140px</div>
+            <div class="ubar ubar-pct">% &bull; 80% of parent box</div>
+            <div class="ubar ubar-rem">rem &bull; 1.25rem font sizing</div>
+            <div class="ubar ubar-vw">vw &bull; Viewport fraction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Units Syntax</span></div>
+        <pre><code>.ubar-px  { width: 140px; background-color: #2563eb; }
+.ubar-pct { width: 80%;   background-color: #059669; }
+.ubar-rem { font-size: 1.25rem; /* 20px */ background: #7c3aed; }
+.ubar-vw  { width: 35vw;  max-width: 100%; background: #db2777; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 10: TEXT PROPERTIES - PART 2
+         ------------------------------------------------------------------ -->
+    <article id="topic-10" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">10</span>
+        <h2 class="card-title">Text Properties - Part 2 (line-height, text-transform)</h2>
+        <span class="card-category">Typography</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p><code>line-height</code> gives text lines vertical breathing room (preventing squished, unreadable paragraphs). <code>text-transform</code> instantly changes letter casing (UPPERCASE, Capitalize, lowercase) purely through CSS without rewriting HTML words.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>line-height: 1.8;</code> spaces lines at 180% of font size (a unitless ratio is best practice).</li>
+              <li><code>text-transform: uppercase;</code> forces all letters capital.</li>
+              <li><code>text-transform: capitalize;</code> capitalizes the first letter of each word.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="tp2-demo-area">
+            <p class="tp2-lh-text">
+              <strong>line-height: 1.8;</strong><br>
+              Generous vertical line spacing makes long paragraphs pleasant to read and prevents lines from overlapping.
+            </p>
+            <div class="case-chip-row">
+              <span class="case-chip chip-upper">uppercase sample</span>
+              <span class="case-chip chip-cap">capitalize sample</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>line-height &amp; text-transform</span></div>
+        <pre><code>.tp2-lh-text { line-height: 1.8; color: #334155; }
+.chip-upper  { text-transform: uppercase; }  /* UPPERCASE SAMPLE */
+.chip-cap    { text-transform: capitalize; } /* Capitalize Sample */</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 11: BOX MODEL IN CSS
+         ------------------------------------------------------------------ -->
+    <article id="topic-11" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">11</span>
+        <h2 class="card-title">Box Model &amp; box-sizing: border-box</h2>
+        <span class="card-category">Layout Core</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Every single HTML element is an invisible rectangular box built with 4 layers: <strong>Content</strong> (the inner payload), <strong>Padding</strong> (space around content), <strong>Border</strong> (the frame), and <strong>Margin</strong> (empty buffer pushing other elements away).</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li>By default in old CSS, adding 20px padding made a 100px box expand to 140px!</li>
+              <li><code>box-sizing: border-box;</code> solves this forever: padding and border are factored <em>inside</em> the width you set.</li>
+            </ul>
+          </div>
+          <div class="pro-tip">
+            <strong>⭐ Golden Rule:</strong> Always put <code>* { box-sizing: border-box; }</code> at line 1 of every stylesheet you ever write!
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (4 Nested Layers)</span>
+          <div class="boxmodel-diagram">
+            <div class="bm-margin-layer">
+              <span class="bm-tag">MARGIN (Outer Buffer)</span>
+              <div class="bm-border-layer">
+                <span class="bm-tag">BORDER (Frame)</span>
+                <div class="bm-padding-layer">
+                  <span class="bm-tag">PADDING (Inner Room)</span>
+                  <div class="bm-content-layer">
+                    <strong>CONTENT</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>The Box Model in Action</span></div>
+        <pre><code>* { box-sizing: border-box; } /* Padding won't blow up box width! */
+
+.box {
+  width: 200px;              /* Exact final width */
+  padding: 16px;             /* Internal cushion */
+  border: 4px solid #10b981; /* Frame */
+  margin: 16px;              /* Outer buffer space */
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 12: DISPLAY PROPERTY
+         ------------------------------------------------------------------ -->
+    <article id="topic-12" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">12</span>
+        <h2 class="card-title">Display Property (block, inline, inline-block, none)</h2>
+        <span class="card-category">Layout</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Controls how elements flow and share space on screen: taking up the entire row (<code>block</code>), sitting side-by-side inside text lines (<code>inline</code>), or sitting side-by-side while respecting custom width/height (<code>inline-block</code>).</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>block:</code> Forces a new line before and after, stretches to 100% width.</li>
+              <li><code>inline:</code> Only takes as much width as its text; ignores custom <code>width</code> and <code>height</code>!</li>
+              <li><code>inline-block:</code> Best of both worlds: flows inline, but honors your width/height.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="display-demo-stack">
+            <div class="d-box d-block">display: block (Stretches across full line)</div>
+            <div class="d-inline-row">
+              <span class="d-box d-inline">inline 1</span>
+              <span class="d-box d-inline">inline 2</span>
+              <span class="d-note">(ignores width/height)</span>
+            </div>
+            <div class="d-ib-row">
+              <div class="d-box d-ib">inline-block A</div>
+              <div class="d-box d-ib">inline-block B</div>
+              <span class="d-note">(respects custom width)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Display Property Rules</span></div>
+        <pre><code>.block-box  { display: block; width: 100%; }
+.inline-tag { display: inline; /* width/height ignored */ }
+.ib-button  { display: inline-block; width: 130px; height: 36px; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 13: VISIBILITY
+         ------------------------------------------------------------------ -->
+    <article id="topic-13" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">13</span>
+        <h2 class="card-title">Visibility (visible vs hidden vs display: none)</h2>
+        <span class="card-category">Layout</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>When hiding an element, you must choose whether to collapse its physical footprint. <code>display: none</code> deletes it from page flow (neighbor elements shift into its spot). <code>visibility: hidden</code> makes it invisible like a ghost, but keeps its blank slot reserved.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>display: none;</code> &rarr; Box vanishes completely, layout collapses.</li>
+              <li><code>visibility: hidden;</code> &rarr; Box is transparent, but blank gap remains.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Compare Layout Collapse)</span>
+          <div class="vis-comp-container">
+            <div class="vis-group">
+              <span class="vis-sublabel">1. display: none (Box 2 removed &rarr; Box 3 shifts left)</span>
+              <div class="vis-row">
+                <div class="vbox">Box 1</div>
+                <div class="vbox vbox-dnone">Box 2</div>
+                <div class="vbox">Box 3</div>
+              </div>
+            </div>
+            <div class="vis-group">
+              <span class="vis-sublabel">2. visibility: hidden (Box 2 hidden &rarr; blank gap preserved)</span>
+              <div class="vis-row">
+                <div class="vbox">Box 1</div>
+                <div class="vbox vbox-hidden">Box 2 (ghost)</div>
+                <div class="vbox">Box 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Display None vs Visibility Hidden</span></div>
+        <pre><code>/* Case 1: Erased from page layout; neighboring items collapse in */
+.hide-display    { display: none; }
+
+/* Case 2: Invisible to eye, but keeps its layout space untouched */
+.hide-visibility { visibility: hidden; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 14: ALPHA CHANNEL & OPACITY
+         ------------------------------------------------------------------ -->
+    <article id="topic-14" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">14</span>
+        <h2 class="card-title">Alpha Channel (opacity vs rgba())</h2>
+        <span class="card-category">Colors</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>The <strong>Alpha Channel</strong> controls transparency. The common beginner bug is using <code>opacity</code> when they only wanted a see-through background. <code>opacity</code> fades the entire container <em>plus all text inside</em>. <code>rgba()</code> only fades the background color, keeping text 100% crisp!</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>opacity: 0.45;</code> applies to whole element tree (0 = clear, 1 = solid).</li>
+              <li><code>rgba(225, 29, 72, 0.25);</code> 4th value is Alpha transparency for background only.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Notice Text Readability!)</span>
+          <div class="alpha-comp-grid">
+            <div class="alpha-card alpha-op">
+              <strong>opacity: 0.4</strong>
+              <small>(Text is faded &amp; hard to read)</small>
+            </div>
+            <div class="alpha-card alpha-rgb">
+              <strong>rgba(225, 29, 72, 0.2)</strong>
+              <small>(Background faded, text stays 100% sharp!)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Opacity vs rgba() Syntax</span></div>
+        <pre><code>/* 1. Opacity: Whole element + child text becomes translucent */
+.alpha-op  { opacity: 0.4; background-color: #e11d48; }
+
+/* 2. RGBA: ONLY background is translucent; text is 100% solid white! */
+.alpha-rgb { background-color: rgba(225, 29, 72, 0.2); color: #9f1239; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 15: POSITION PROPERTY
+         ------------------------------------------------------------------ -->
+    <article id="topic-15" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">15</span>
+        <h2 class="card-title">Position (static, relative, absolute, fixed, sticky)</h2>
+        <span class="card-category">Positioning</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>The <code>position</code> property takes elements out of default document flow to anchor, shift, or stick them anywhere on screen.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>static:</code> Normal natural document flow (default).</li>
+              <li><code>relative:</code> Shifted from its normal spot using <code>top/left</code> without disturbing neighbors.</li>
+              <li><code>absolute:</code> Placed relative to its nearest positioned ancestor.</li>
+              <li><code>fixed:</code> Pinned to the browser window; ignores page scroll.</li>
+              <li><code>sticky:</code> Scrolls normally until reaching threshold (e.g. <code>top: 0</code>), then sticks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="pos-stage-box">
+            <span class="pos-stage-tag">Parent Container (position: relative)</span>
+            <div class="pchip pchip-static">1. static (in flow)</div>
+            <div class="pchip pchip-relative">2. relative (shifted top/left)</div>
+            <div class="pchip pchip-absolute">3. absolute (top/right)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Positioning Syntax</span></div>
+        <pre><code>.parent   { position: relative; } /* Anchor frame for absolute children */
+.static   { position: static; }   /* Default flow */
+.relative { position: relative; top: 10px; left: 16px; }
+.absolute { position: absolute; top: 8px; right: 8px; }
+.fixed    { position: fixed; bottom: 20px; right: 20px; }
+.sticky   { position: sticky; top: 0; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 16: Z-INDEX
+         ------------------------------------------------------------------ -->
+    <article id="topic-16" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">16</span>
+        <h2 class="card-title">z-index (Stacking Order)</h2>
+        <span class="card-category">Positioning</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Controls the 3D stacking order along the Z-axis (towards/away from your eyes). When two elements overlap, the one with a higher <code>z-index</code> number floats on top.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><strong>CRITICAL REQUIREMENT:</strong> <code>z-index</code> ONLY takes effect on elements that have a <code>position</code> other than <code>static</code> (e.g. <code>relative</code>, <code>absolute</code>, <code>fixed</code>).</li>
+              <li>Default is <code>auto</code> (or 0). Positive values lift upward; negative values tuck underneath.</li>
+            </ul>
+          </div>
+          <div class="pro-tip">
+            <strong>⚠️ Most Common Mistake:</strong> Setting <code>z-index: 9999</code> on a standard static div does nothing! Add <code>position: relative</code> to turn on z-index!
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Overlapping Deck)</span>
+          <div class="zindex-deck">
+            <div class="zcard zcard-bottom">z-index: 1 (Bottom)</div>
+            <div class="zcard zcard-top">z-index: 10 (TOP LAYER!)</div>
+            <div class="zcard zcard-middle">z-index: 2 (Middle)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>z-index Stacking Rules</span></div>
+        <pre><code>/* Position must NOT be static for z-index to activate! */
+.card-bottom { position: absolute; z-index: 1;  background: #64748b; }
+.card-middle { position: absolute; z-index: 2;  background: #0284c7; }
+.card-top    { position: absolute; z-index: 10; background: #e11d48; }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 17: BACKGROUND IMAGE
+         ------------------------------------------------------------------ -->
+    <article id="topic-17" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">17</span>
+        <h2 class="card-title">Background Image (background-image: url(...))</h2>
+        <span class="card-category">Media</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Loads a photo or graphic behind an element. Always combine it with <code>background-repeat: no-repeat;</code> and <code>background-position: center;</code> so the photo doesn't tile like bathroom wallpaper!</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>url('filename.jpg')</code> tells browser where to fetch image file.</li>
+              <li><code>background-repeat: no-repeat;</code> stops default repeat pattern.</li>
+              <li><code>background-position: center;</code> centers focus point inside box.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="bg-img-preview-box">
+            <div class="bg-photo-overlay">Workspace Photo Loaded</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Background Image Syntax</span></div>
+        <pre><code>.hero-banner {
+  background-image: url('mudassir-ali-DvreeyPXQww-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 18: BACKGROUND SIZE
+         ------------------------------------------------------------------ -->
+    <article id="topic-18" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">18</span>
+        <h2 class="card-title">Background Size (cover, contain, auto)</h2>
+        <span class="card-category">Media</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Determines how a background photo scales inside its container: <code>cover</code> zooms and fills the box completely (may crop edges), <code>contain</code> fits the whole image inside with zero cropping (may leave empty bars), and <code>auto</code> renders raw camera pixels.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>cover:</code> Most popular for hero banners; guarantees zero empty space.</li>
+              <li><code>contain:</code> Perfect for brand logos or icons where every pixel must be seen.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="bg-size-compare-row">
+            <div class="bs-tile bs-cover"><span>size: cover</span></div>
+            <div class="bs-tile bs-contain"><span>size: contain</span></div>
+            <div class="bs-tile bs-auto"><span>size: auto</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Comparing Background Sizes</span></div>
+        <pre><code>.banner-cover   { background-size: cover; }   /* Fills box; crops overflow */
+.banner-contain { background-size: contain; } /* Fits full image; no cropping */
+.banner-auto    { background-size: auto; }    /* Original pixel size */</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 19: FLEXBOX CONTAINER
+         ------------------------------------------------------------------ -->
+    <article id="topic-19" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">19</span>
+        <h2 class="card-title">Flexbox Container (display: flex, justify, align)</h2>
+        <span class="card-category">Flexbox</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p><code>display: flex</code> transforms a parent container into an intelligent 1D layout manager. <code>justify-content</code> arranges items along the main horizontal axis, and <code>align-items</code> aligns items vertically across.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>justify-content: space-between;</code> pushes items to the far left, middle, and far right.</li>
+              <li><code>align-items: center;</code> perfectly centers elements vertically (solving the oldest problem in CSS history!).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="flex-container-demo">
+            <div class="flex-pill">Item 1</div>
+            <div class="flex-pill">Item 2</div>
+            <div class="flex-pill">Item 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Flex Container Fundamentals</span></div>
+        <pre><code>.flex-parent {
+  display: flex;                  /* 1. Turns on Flexbox */
+  justify-content: space-between; /* 2. Main Axis: Spread across */
+  align-items: center;            /* 3. Cross Axis: Vertical center */
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 20: FLEXBOX DIRECTION
+         ------------------------------------------------------------------ -->
+    <article id="topic-20" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">20</span>
+        <h2 class="card-title">Flexbox Direction (row, column, reverses)</h2>
+        <span class="card-category">Flexbox</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p><code>flex-direction</code> sets the primary direction of your layout track: horizontal left-to-right (<code>row</code>), vertical stack (<code>column</code>), or either direction in reverse.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>row:</code> Default horizontal layout flow.</li>
+              <li><code>column:</code> Stacks children vertically (perfect for mobile menus and forms).</li>
+              <li><code>row-reverse:</code> Flips horizontal order backwards.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview</span>
+          <div class="fdir-showcase-row">
+            <div class="fdir-block">
+              <span class="fdir-label">flex-direction: row</span>
+              <div class="fdir-row">
+                <span class="fnum">1</span><span class="fnum">2</span><span class="fnum">3</span>
+              </div>
+            </div>
+            <div class="fdir-block">
+              <span class="fdir-label">flex-direction: column</span>
+              <div class="fdir-col">
+                <span class="fnum">1</span><span class="fnum">2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Flex Direction Values</span></div>
+        <pre><code>.navbar     { display: flex; flex-direction: row; }    /* Horizontal */
+.mobile-nav { display: flex; flex-direction: column; } /* Vertical stack */</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 21: FLEX PROPERTIES
+         ------------------------------------------------------------------ -->
+    <article id="topic-21" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">21</span>
+        <h2 class="card-title">Flex Properties (flex-grow, flex-shrink, flex-basis, gap)</h2>
+        <span class="card-category">Flexbox</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Applied to flex <em>children</em> to control expansion. <code>flex-grow</code> tells an item how greedily to expand into leftover space. <code>gap</code> creates clean, uniform spacing between flex items without annoying margin hacks!</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>flex-grow: 1;</code> shares extra room equally.</li>
+              <li><code>flex-grow: 2;</code> takes twice as much remaining space as a sibling with <code>grow: 1</code>.</li>
+              <li><code>gap: 12px;</code> sets modern gap spacing on the parent.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Box 2 has flex-grow: 2)</span>
+          <div class="flex-child-parent">
+            <div class="fc-item fc-grow1">grow: 1</div>
+            <div class="fc-item fc-grow2">grow: 2 (Expands Double!)</div>
+            <div class="fc-item fc-grow1">grow: 1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Child Sizing &amp; Gap</span></div>
+        <pre><code>.parent     { display: flex; gap: 12px; }
+.normal-box { flex-grow: 1; }
+.hero-box   { flex-grow: 2; /* takes 2x leftover space */ }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 22: MEDIA QUERIES
+         ------------------------------------------------------------------ -->
+    <article id="topic-22" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">22</span>
+        <h2 class="card-title">Media Queries (@media (max-width: ...))</h2>
+        <span class="card-category">Responsive</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Media queries are the engine of <strong>Responsive Web Design</strong>. They tell CSS: <em>"Only activate these styles when the user's browser window is within a specific width!"</em> (like on mobile phones).</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>@media (max-width: 768px) { ... }</code> triggers when the viewport width is 768px or narrower.</li>
+              <li>Styles outside the media query serve as defaults; rules inside override them on smaller devices.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Resize Browser to Test!)</span>
+          <div class="mq-test-box">
+            <span class="mq-desktop-label">Desktop Screen (&gt; 768px): Ocean Blue Theme</span>
+            <span class="mq-mobile-label">Mobile Screen (&le; 768px): Crimson Red Theme!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Responsive Breakpoint Syntax</span></div>
+        <pre><code>/* Desktop Default (Blue) */
+.mq-test-box { background-color: #0284c7; color: #ffffff; }
+
+/* Mobile Viewport Trigger (<= 768px) */
+@media (max-width: 768px) {
+  .mq-test-box {
+    background-color: #e11d48; /* Turns Crimson Red on phones! */
+  }
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 23: TRANSITIONS
+         ------------------------------------------------------------------ -->
+    <article id="topic-23" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">23</span>
+        <h2 class="card-title">Transitions (property, duration, timing-function)</h2>
+        <span class="card-category">Animations</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Transitions eliminate abrupt, jarring state changes. Instead of snapping instantly when a user hovers over a button, CSS smoothly tweens property values over time.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>transition-property: background-color, transform;</code> defines what to animate.</li>
+              <li><code>transition-duration: 0.35s;</code> sets duration.</li>
+              <li><code>transition-timing-function: ease-in-out;</code> sets the acceleration curve.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Hover Me!)</span>
+          <div class="indiv-trans-btn">Hover to Animate</div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Individual Transition Properties</span></div>
+        <pre><code>.btn {
+  background-color: #2563eb;
+  transition-property: background-color, transform;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+.btn:hover {
+  background-color: #059669;
+  transform: translateY(-4px);
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 24: TRANSITION SHORTHAND
+         ------------------------------------------------------------------ -->
+    <article id="topic-24" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">24</span>
+        <h2 class="card-title">Transition Shorthand</h2>
+        <span class="card-category">Animations</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Combines all 4 transition statements into a single elegant line. The order is: <strong>Property</strong> &rarr; <strong>Duration</strong> &rarr; <strong>Timing Function</strong> &rarr; <strong>Delay</strong>.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>transition: all 0.3s ease-in-out;</code> animates any property that changes upon <code>:hover</code>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Hover the Button)</span>
+          <button class="shorthand-btn" type="button">Shorthand Button</button>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Transition One-Liner</span></div>
+        <pre><code>/* property | duration | timing-function | delay */
+.shorthand-btn {
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.shorthand-btn:hover {
+  background-color: #e11d48;
+  transform: translateY(-3px) scale(1.04);
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 25: CSS TRANSFORM
+         ------------------------------------------------------------------ -->
+    <article id="topic-25" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">25</span>
+        <h2 class="card-title">CSS Transform (translate, rotate, scale, skew)</h2>
+        <span class="card-category">Animations</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Transforms modify an element's geometric shape and coordinates (sliding, spinning, zooming, or slanting) on the GPU without triggering expensive page reflow!</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>translate(x, y):</code> Shifts along X and Y axes.</li>
+              <li><code>rotate(deg):</code> Spins around its center.</li>
+              <li><code>scale(n):</code> Enlarges (&gt;1) or shrinks (&lt;1).</li>
+              <li><code>skew(deg):</code> Slants / shears element diagonally.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Hover Each Box)</span>
+          <div class="transform-grid-demo">
+            <div class="tf-tile tf-trans">translate</div>
+            <div class="tf-tile tf-rot">rotate</div>
+            <div class="tf-tile tf-scale">scale</div>
+            <div class="tf-tile tf-skew">skew</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>2D Transform Functions</span></div>
+        <pre><code>.tf-trans:hover { transform: translate(8px, -8px); }
+.tf-rot:hover   { transform: rotate(20deg); }
+.tf-scale:hover { transform: scale(1.15); }
+.tf-skew:hover  { transform: skew(12deg, 4deg); }</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 26: ANIMATION (@KEYFRAMES)
+         ------------------------------------------------------------------ -->
+    <article id="topic-26" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">26</span>
+        <h2 class="card-title">Animation (@keyframes rule)</h2>
+        <span class="card-category">Animations</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Unlike transitions (which need a user trigger like <code>:hover</code>), keyframe animations play <em>autonomously and continuously</em> on page load. <code>@keyframes</code> defines the film script from start to finish.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>@keyframes slideBall { from { ... } to { ... } }</code> writes the script.</li>
+              <li>Attach it to an element via <code>animation-name</code> and <code>animation-duration</code>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Runs Automatically)</span>
+          <div class="kf-track">
+            <div class="kf-ball"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Defining &amp; Calling @keyframes</span></div>
+        <pre><code>/* 1. Define the timeline script */
+@keyframes slideBall {
+  from { transform: translateX(-40px); }
+  to   { transform: translateX(40px); }
+}
+
+/* 2. Bind timeline to element */
+.kf-ball {
+  animation-name: slideBall;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 27: ANIMATION PROPERTIES
+         ------------------------------------------------------------------ -->
+    <article id="topic-27" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">27</span>
+        <h2 class="card-title">Animation Properties (name, duration, iteration, direction)</h2>
+        <span class="card-category">Animations</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Fine-tune how your animation performs: which timeline to play (name), how long it takes (duration), how many times it loops (iteration-count), and whether it ping-pongs back and forth (direction).</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>animation-name: spinLoader;</code></li>
+              <li><code>animation-duration: 1s;</code></li>
+              <li><code>animation-timing-function: linear;</code> (constant smooth speed).</li>
+              <li><code>animation-iteration-count: infinite;</code> (loops forever).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Spinning Radar)</span>
+          <div class="anim-spinner"></div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Configuring Animation Properties</span></div>
+        <pre><code>.anim-spinner {
+  animation-name: spinLoader;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spinLoader {
+  to { transform: rotate(360deg); }
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 28: ANIMATION SHORTHAND
+         ------------------------------------------------------------------ -->
+    <article id="topic-28" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">28</span>
+        <h2 class="card-title">Animation Shorthand</h2>
+        <span class="card-category">Animations</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Rolls up to 6 separate animation statements into one clean line: <strong>Name</strong> &bull; <strong>Duration</strong> &bull; <strong>Timing-Function</strong> &bull; <strong>Delay</strong> &bull; <strong>Iteration-Count</strong> &bull; <strong>Direction</strong>.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>animation: bounce 0.8s ease-in 0s infinite alternate;</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Bouncing Ball)</span>
+          <div class="bounce-stage">
+            <div class="bouncing-ball"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Animation Shorthand Formula</span></div>
+        <pre><code>/* name | duration | timing-function | delay | count | direction */
+.bouncing-ball {
+  animation: bounce 0.8s ease-in 0s infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-28px); }
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------------------
+         TOPIC 29: % IN ANIMATION KEYFRAMES
+         ------------------------------------------------------------------ -->
+    <article id="topic-29" class="topic-card">
+      <div class="card-topbar">
+        <span class="card-number">29</span>
+        <h2 class="card-title">% in Animation (Multi-Step Keyframes: 0%, 50%, 100%)</h2>
+        <span class="card-category">Animations</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="card-theory">
+          <div class="theory-block">
+            <h3>1. What It Does (Plain English)</h3>
+            <p>Instead of only <code>from</code> (0%) and <code>to</code> (100%), percentage milestones let you storyboard complex choreography with multi-stop scenes at 0%, 25%, 50%, 75%, and 100%.</p>
+          </div>
+          <div class="theory-block">
+            <h3>2. How It Works in CSS</h3>
+            <ul>
+              <li><code>0%:</code> Starts as a blue rounded square.</li>
+              <li><code>50%:</code> Morphs midway into a scaled-up rose-red circle!</li>
+              <li><code>100%:</code> Seamlessly shifts to an emerald green badge.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-demo-area">
+          <span class="demo-heading">Live Visual Preview (Shape &amp; Color Morph)</span>
+          <div class="morph-cube"></div>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-header"><span>Multi-Stage Percentage Keyframes</span></div>
+        <pre><code>@keyframes multiMorph {
+  0% {
+    background-color: #2563eb; /* Blue */
+    border-radius: 8px;
+    transform: scale(1);
+  }
+  50% {
+    background-color: #e11d48; /* Rose Red */
+    border-radius: 50%;        /* Morphs into circle */
+    transform: scale(1.25);
+  }
+  100% {
+    background-color: #059669; /* Emerald Green */
+    border-radius: 8px;
+    transform: scale(1);
+  }
+}</code></pre>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+  <footer class="footer">
+    <p>Crafted with care by <strong>Addy</strong> &bull; Complete 29-Topic Visual Reference &bull;  College CSS Curriculum</p>
+  </footer>
+
+</body>
+</html>
